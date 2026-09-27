@@ -2,6 +2,16 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.9.0
+
+### Added
+- **Builtin `#readline()`**: read one line from stdin (empty string on EOF) — enables line-based interaction for resident process protocol
+- **`vesna-mc` 1.2.0 (resident process mode)**: events no longer spawn short-lived processes each time; the mod starts a resident `vesna` child (`resident.ves`) and dispatches events over stdin/stdout JSON line protocol — zero cold-start cost for high-frequency events like `server_tick`; enable via `"resident": true` in `events.json` (default on), can fall back to one-shot mode
+- VSCode extension 2.9.0 (syntax highlighting 215 builtins)
+
+### Notes
+- Resident mode verified: generator assertions 5/5, end-to-end script protocol 15/15; ResidentBridge javac syntax-level check passed locally.
+
 ## 2.8.0
 
 ### Added

@@ -574,6 +574,7 @@ def worker()-
 | `#url_parse(url)` | 解析 URL 为 `{scheme; host; port; path; query}`（剥离 userinfo，缺省端口 https=443 / http=80） |
 | `#clip_get()` | 读取剪贴板文本（POSIX 返回 `none`） |
 | `#clip_set(s)` | 设置剪贴板文本，返回是否成功（POSIX 返回 `false`） |
+| `#readline()` | 从 stdin 读取一行（EOF 返回空串） |
 
 这些内置为文件批处理、包下载校验、脚本自动化提供通用能力；`#dir_walk` / `#hash_file` 已被 `vesna-dev`、vpm 等工具复用。
 

@@ -574,6 +574,7 @@ Notes: key is derived via SHA-256 (same as `#aes_encrypt`); encrypted files carr
 | `#url_parse(url)` | Parse a URL into `{scheme; host; port; path; query}` (strips userinfo; default port https=443 / http=80) |
 | `#clip_get()` | Read clipboard text (POSIX returns `none`) |
 | `#clip_set(s)` | Set clipboard text, returns success (POSIX returns `false`) |
+| `#readline()` | Read one line from stdin (empty string on EOF) |
 
 These builtins provide generic capability for batch file processing, package download verification and script automation; `#dir_walk`/`#hash_file` are reused by `vesna-dev` and vpm.
 

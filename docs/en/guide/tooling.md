@@ -71,7 +71,7 @@ Runtime errors show source context: `[line N] message` followed by the source li
 vesna --lsp
 ```
 
-Native C++ implementation (stdio JSON-RPC): diagnostics, completion (all 214 builtins + document identifiers, `#` trigger), hover (builtin/keyword docs + definition line for user identifiers), `documentSymbol`, `foldingRange`, go-to-definition, rename, signature help, workspace symbols, formatting, find references. The VSCode extension spawns `vesna --lsp` automatically.
+Native C++ implementation (stdio JSON-RPC): diagnostics, completion (all 215 builtins + document identifiers, `#` trigger), hover (builtin/keyword docs + definition line for user identifiers), `documentSymbol`, `foldingRange`, go-to-definition, rename, signature help, workspace symbols, formatting, find references. The VSCode extension spawns `vesna --lsp` automatically.
 
 ## Formatter (since 1.5)
 
@@ -99,4 +99,4 @@ vesna --help
 
 ## VSCode extension
 
-`vesna-2.8.0.vsix`: syntax highlighting (214 builtins) + LSP (diagnostics/completion/hover/symbols/folding/definition/rename/signature/workspace symbols, formatting, find references). Install from the extension panel → "Install from VSIX"; if `vesna` is not on PATH, set `vesna.executablePath` to the full path of `vesna.exe`.
+`vesna-2.9.0.vsix`: syntax highlighting (215 builtins) + LSP (diagnostics/completion/hover/symbols/folding/definition/rename/signature/workspace symbols, formatting, find references). Install from the extension panel → "Install from VSIX"; if `vesna` is not on PATH, set `vesna.executablePath` to the full path of `vesna.exe`.

@@ -2,6 +2,16 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.9.0
+
+### 新增
+- **内置 `#readline()`**：从 stdin 读取一行（EOF 返回空串）——为常驻进程协议提供逐行交互
+- **`vesna-mc` 1.2.0（常驻进程模式）**：事件不再逐次启动短生命周期进程，改为模组拉起常驻 `vesna` 子进程（`resident.ves`），stdin/stdout JSON 行协议分发事件，`server_tick` 等高频事件零冷启动开销；`events.json` 置 `"resident": true` 启用（默认开），可关回单次模式
+- VSCode 插件 2.9.0（语法高亮 215 内置）
+
+### 说明
+- 常驻模式验证：生成器断言 5/5、脚本协议端到端 15/15 通过；桥类 ResidentBridge 本机 javac 语法级验证。
+
 ## 2.8.0
 
 ### 新增
