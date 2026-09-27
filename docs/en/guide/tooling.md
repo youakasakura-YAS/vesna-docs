@@ -99,4 +99,4 @@ vesna --help
 
 ## VSCode extension
 
-`vesna-2.6.0.vsix`: syntax highlighting (214 builtins) + LSP (diagnostics/completion/hover/symbols/folding/definition/rename/signature/workspace symbols, formatting, find references). Install from the extension panel → "Install from VSIX"; if `vesna` is not on PATH, set `vesna.executablePath` to the full path of `vesna.exe`.
+`vesna-2.7.0.vsix`: syntax highlighting (214 builtins) + LSP (diagnostics/completion/hover/symbols/folding/definition/rename/signature/workspace symbols, formatting, find references). Install from the extension panel → "Install from VSIX"; if `vesna` is not on PATH, set `vesna.executablePath` to the full path of `vesna.exe`.

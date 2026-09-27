@@ -2,6 +2,19 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.7.0
+
+### 新增
+- **`vesna-mc` 官方包（1.0.0）**：Minecraft 桥接模组生成器
+  - 生成 **Fabric / Forge / NeoForge**（MC **1.20.1+**）完整桥接模组项目
+  - 桥接类纯 Java（`VesnaBridge` / `VesnaJson`，零外部依赖），平台入口 `VesnaMod`
+  - 事件映射 `config/vesna/events.json` + 示例脚本；命令 `/modid <script>` / `/modid-reload`
+  - 进程桥协议：脚本 `argv[1]` 收 JSON payload，`stdout` 最后一行 JSON 为返回结果
+- VSCode 插件 2.7.0
+
+### 说明
+- 桥接模组为子进程调用模型（30s 超时），适合低频事件与命令；每 tick 场景等待后续常驻进程模式。
+
 ## 2.6.0
 
 ### 新增

@@ -2,6 +2,19 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.7.0
+
+### Added
+- **`vesna-mc` official package (1.0.0)**: Minecraft bridge mod generator
+  - Builds complete **Fabric / Forge / NeoForge** mod projects (MC **1.20.1+**)
+  - Pure-Java bridge classes (`VesnaBridge`/`VesnaJson`, zero external deps) plus platform entrypoint `VesnaMod`
+  - Event mapping `config/vesna/events.json` with example scripts; commands `/modid <script>` / `/modid-reload`
+  - Process-bridge protocol: script receives JSON payload as `argv[1]`, last stdout line is the JSON result
+- VSCode extension 2.7.0
+
+### Notes
+- The bridge runs short-lived `vesna` processes (30s timeout) — suited to low-frequency events and commands; tick-level usage awaits a future resident-process mode.
+
 ## 2.6.0
 
 ### Added
