@@ -8,7 +8,7 @@ Grab `vesna-2.0.0-windows-x64.zip` from [GitHub Releases](https://github.com/you
 | --- | --- |
 | `vesna.exe` | Interpreter (statically linked, single-file distribution, zero runtime deps) |
 | `docs\` | Builtins & syntax docs |
-| `vesna-2.3.0.vsix` | VSCode extension (193-builtin highlighting + full LSP) |
+| `vesna-2.5.0.vsix` | VSCode extension (193-builtin highlighting + full LSP) |
 
 ## Run scripts
 

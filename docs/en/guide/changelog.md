@@ -2,6 +2,14 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.5.0
+
+### Added
+- **LSP formatting**: `textDocument/formatting` reuses the CLI `--fmt` line-level formatter (trims line-edge whitespace, normalizes `-` indentation, collapses blank lines) so the whole document can be formatted in VSCode
+- **LSP find references**: `textDocument/references` finds every reference position of an identifier in the document (skipping comments and string literals)
+- LSP capability declaration updated (serverInfo 2.5.0)
+- VSCode extension 2.5.0
+
 ## 2.4.0
 
 ### Added

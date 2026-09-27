@@ -2,6 +2,14 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.5.0
+
+### 新增
+- **LSP 格式化**：`textDocument/formatting` —— 复用 CLI `--fmt` 的行级格式化（去行首尾空白、规范化 `-` 缩进、压缩连续空行），VSCode 中可直接格式化整个文档
+- **LSP 引用查找**：`textDocument/references` —— 文档内查找标识符所有引用位置（跳过注释与字符串字面量），支持「查找所有引用」
+- LSP 能力声明更新（serverInfo 2.5.0）
+- VSCode 插件 2.5.0
+
 ## 2.4.0
 
 ### 新增
