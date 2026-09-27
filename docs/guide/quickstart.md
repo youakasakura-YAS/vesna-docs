@@ -2,14 +2,13 @@
 
 ## 下载
 
-从 [GitHub Releases](https://github.com/youakasakura-YAS/vesna/releases) 下载 `vesna-1.5.0-windows-x64.zip`，解压到任意目录即可使用，无需安装依赖。
+从 [GitHub Releases](https://github.com/youakasakura-YAS/vesna/releases) 下载 `vesna-2.0.0-windows-x64.zip`，解压到任意目录即可使用，无需安装依赖。
 
 | 文件 | 说明 |
 | --- | --- |
-| `bin\vesna.exe` | 解释器（静态链接，零运行时依赖） |
-| `lib\*.ves` | 标准库（vpm 包管理器等） |
+| `vesna.exe` | 解释器（静态链接，单文件分发，零运行时依赖） |
 | `docs\` | 内置函数与语法文档 |
-| `vesna-0.6.0.vsix` | VSCode 插件（语法高亮 + LSP） |
+| `vesna-2.0.0.vsix` | VSCode 插件（193 内置高亮 + 完整 LSP） |
 
 ## 运行脚本
 

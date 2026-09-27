@@ -361,6 +361,10 @@ print(#f"name=(name), age=(age)"),
 | `#truncate(path; size)` | 将文件截断 / 扩展为 `size` 字节 |
 | `#is_dir(path)` / `#is_file(path)` | 路径类型判断 |
 | `#mkdirs(path)` | 递归创建目录 |
+| `#mkdir(path)` | 创建单个目录 |
+| `#copy(src; dst)` | 复制文件（源不存在报错） |
+| `#rename(src; dst)` | 重命名 / 移动文件或目录 |
+| `#chdir(path)` | 改变当前工作目录 |
 
 ### 编码
 
@@ -428,6 +432,12 @@ print(#f"name=(name), age=(age)"),
 |---|---|
 | `#json_encode(v)` | 将任意值序列化为 JSON 字符串（dict 保持插入顺序） |
 | `#json_decode(s)` | 解析 JSON 为 dict / list / int / float / string / bool / none；非法输入报错 |
+| `#csv_parse(s)` | 解析 CSV 文本为行列表 `[[字段; ...]; ...]` |
+| `#csv_build(rows)` | 行列表 → CSV 文本 |
+| `#ini_read(path)` | 读取 INI 文件为 `{section: {key: value}}` |
+| `#ini_write(path; data)` | 将 `{section: {key: value}}` 写入 INI 文件 |
+| `#xml_parse(s)` | 解析 XML 文本为 `{tag; attrs; children; text}`（简易 DOM） |
+| `#call(fname; arg...)` | 按函数名字符串动态调用 |
 | `#re_groups(s; pattern)` | 返回首个正则匹配的捕获组列表：组 0 为整段匹配，未匹配组为 `none`；无匹配返回空列表 |
 
 ### 加密
@@ -451,6 +461,7 @@ print(#f"name=(name), age=(age)"),
 | 函数 | 说明 |
 |---|---|
 | `#ffi_call("dll"; "func"; arg...)` | 加载共享库并调用 C 函数；参数支持 int / 字符串（字符串以 `char*` 传入），最多 6 个；返回 64 位整数结果 |
+| `#ffi_call_s("dll"; "func"; arg...)` | 同 `#ffi_call`，返回字符串（函数返回 `char*`） |
 
 示例：`#ffi_call("kernel32.dll"; "GetTickCount")`、`#ffi_call("kernel32.dll"; "GetModuleHandleA"; "kernel32.dll")`。
 

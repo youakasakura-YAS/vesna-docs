@@ -1,12 +1,53 @@
 # 调试与工具链
 
+## 安装与卸载
+
+```bat
+vesna --install            # 安装到 C:\Vesna，写入环境变量与文件关联
+vesna --install D:\MyVesna # 指定目录
+vesna --uninstall          # 卸载：删目录 + 清环境变量 + 删注册表
+```
+
+安装程序同时注册 `.ves` 文件关联（`install-assoc.reg` 集成其中）。单文件分发——`vesna.exe` 无需 `lib/` 目录、无需 `VESNA_HOME` 即可独立运行。
+
 ## 调试器
 
 ```bat
 vesna --debug hello.ves
 ```
 
-交互命令：`c`/`continue` 继续、`n`/`next` 下一行、`s`/`step` 步入、`q`/`quit` 退出、`b <行>` 设断点、`del <行>` 删断点、`p <表达式>` 求值、`vars` 变量列表、`bt` 调用栈、`list` 显示源码、`help` 帮助。
+进入逐行调试。交互命令：
+
+| 命令 | 说明 |
+|---|---|
+| `c` / `continue` | 继续运行到下一个断点或结束 |
+| `n` / `next` | 下一行（不进入函数） |
+| `s` / `step` | 步入函数 |
+| `finish` | 运行到当前函数返回 |
+| `q` / `quit` | 退出调试 |
+| `b <行号>` | 设置断点 |
+| `b <行号> if <条件>` | 条件断点（条件为真才停下） |
+| `del <行号>` | 删除断点 |
+| `del all` | 清空所有断点 |
+| `watch <表达式>` | 添加监视表达式（每次停顿时显示） |
+| `watches` | 列出全部监视 |
+| `unwatch <序号>` | 删除指定监视 |
+| `set <变量> = <表达式>` | 修改变量值 |
+| `p <表达式>` | 求值表达式 |
+| `vars` | 变量列表 |
+| `bt` | 调用栈 |
+| `list` | 显示当前源码 |
+| `help` | 帮助 |
+
+## 错误显示（2.0 起）
+
+运行错误带源码上下文：`[第 N 行] 消息` 后跟源码行与 `^` 插入符定位列。
+
+```text
+[第 2 行] 未知字符: 2
+  | count = '0',
+  |         ^
+```
 
 ## LSP（语言服务器）
 
@@ -14,7 +55,7 @@ vesna --debug hello.ves
 vesna --lsp
 ```
 
-原生 C++ 实现（stdio JSON-RPC）：诊断、补全（全部内置 + 文档标识符，`#` 触发）、悬停、`documentSymbol`、`foldingRange`。VSCode 插件自动拉起 `vesna --lsp`。
+原生 C++ 实现（stdio JSON-RPC），支持：诊断、补全（全部 193 内置 + 文档标识符，`#` 触发）、悬停（内置/关键字文档 + 用户标识符定义行）、`documentSymbol`、`foldingRange`、跳转定义、重命名、签名提示、工作区符号。VSCode 插件自动拉起 `vesna --lsp`。
 
 ## 格式化器（1.5 起）
 
@@ -24,9 +65,14 @@ vesna --fmt hello.ves
 
 行级规范化：缩进（`-` 层数）、行尾空白、连续空行压缩。纯语法保持，不移动 token。
 
-## REPL 补全（1.5 起，Windows）
+## REPL
 
-REPL 中按 Tab 补全内置名：`#js<Tab>` 唯一命中自动补全（`json_encode`），多命中列出候选，零命中无操作。
+```bat
+vesna
+```
+
+- **Tab 补全**（Windows）：补全内置名，`#js<Tab>` 唯一命中自动补全，多命中列出候选
+- **上下方向键历史**（2.0 起）：浏览历史命令
 
 ## 版本与帮助
 
@@ -37,4 +83,4 @@ vesna --help
 
 ## VSCode 插件
 
-`vesna-0.6.0.vsix`：语法高亮（176 内置）+ LSP（诊断/补全/悬停/符号/折叠）。在 VSCode 扩展面板「从 VSIX 安装」即可。
+`vesna-2.0.0.vsix`：语法高亮（193 内置）+ LSP（诊断/补全/悬停/符号/折叠/跳转定义/重命名/签名提示/工作区符号）。在 VSCode 扩展面板「从 VSIX 安装」即可；`vesna` 不在 PATH 时设置 `vesna.executablePath` 指向 `vesna.exe`。

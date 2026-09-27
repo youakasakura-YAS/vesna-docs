@@ -21,7 +21,7 @@ features:
     details: Statically linked, zero runtime dependencies, single vesna.exe; C++ is authoritative, the Python reference is frozen for regression only
   - title: Fast text processing
     details: ~240ms for 100k log lines; a lightweight alternative to awk / sed / jq / perl
-  - title: 176 builtins
+  - title: 193 builtins
     details: strings / lists / dicts, regex, filesystem, concurrency, networking, binary, JSON/CSV/INI/XML, SHA256/AES, FFI
   - title: vpm package manager
     details: init / install / remove / list / search / registry / publish, with an official package garden

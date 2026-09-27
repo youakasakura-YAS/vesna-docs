@@ -361,6 +361,10 @@ Added in 1.0.0. `#rand`, `#randint`, `#choice`, `#shuffle`, `#now`, `#date`, `#s
 | `#truncate(path; size)` | truncate / extend a file to `size` bytes |
 | `#is_dir(path)` / `#is_file(path)` | path type checks |
 | `#mkdirs(path)` | create directories recursively |
+| `#mkdir(path)` | create a single directory |
+| `#copy(src; dst)` | copy a file (raises if source is missing) |
+| `#rename(src; dst)` | rename / move a file or directory |
+| `#chdir(path)` | change the current working directory |
 
 ### Encoding
 
@@ -428,6 +432,12 @@ Bytes are plain integers, so existing list ops (`#len`, `#slice`, `#append`, ...
 |---|---|
 | `#json_encode(v)` | serialize any value to a JSON string (dicts keep insertion order) |
 | `#json_decode(s)` | parse JSON to dict / list / int / float / string / bool / none; raises on invalid input |
+| `#csv_parse(s)` | parse CSV text into rows `[[field; ...]; ...]` |
+| `#csv_build(rows)` | rows -> CSV text |
+| `#ini_read(path)` | read an INI file into `{section: {key: value}}` |
+| `#ini_write(path; data)` | write `{section: {key: value}}` to an INI file |
+| `#xml_parse(s)` | parse XML text into `{tag; attrs; children; text}` (simple DOM) |
+| `#call(fname; arg...)` | dynamically invoke a function by name string |
 | `#re_groups(s; pattern)` | first regex match as a group list: group 0 = whole match, unmatched groups are `none`; empty list if no match |
 
 ### Crypto
@@ -451,6 +461,7 @@ Note: the AES mode uses a fixed zero IV and a SHA-256-derived key — suitable f
 | Function | Description |
 |---|---|
 | `#ffi_call("dll"; "func"; arg...)` | load a shared library and call a C function; args support int / string (string passed as `char*`), max 6 args; returns the 64-bit integer result |
+| `#ffi_call_s("dll"; "func"; arg...)` | same as `#ffi_call`, returns a string (function returns `char*`) |
 
 Examples: `#ffi_call("kernel32.dll"; "GetTickCount")`, `#ffi_call("kernel32.dll"; "GetModuleHandleA"; "kernel32.dll")`.
 

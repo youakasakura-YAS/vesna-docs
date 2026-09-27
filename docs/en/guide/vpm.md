@@ -1,6 +1,6 @@
 # Package Manager (vpm)
 
-Vesna ships a built-in package manager (`lib\pkg.ves`) — entry point `vesna --pkg <command>`.
+Vesna ships a built-in package manager (embedded in `vesna.exe`, single-file distribution) — entry point `vesna --pkg <command>`.
 
 ## Commands
 
@@ -53,9 +53,13 @@ Default registry: [Vesna Package Garden](https://youakasakura-YAS.github.io/vesn
 - `strutil` — string utilities
 - `hello_vesna` — sample package
 - `vesna-test` — unit test framework (`test_case` / `test_run` / `test_eq` / `test_assert` / `test_true` / `test_count`)
+- `vesna-gui` — Web GUI framework (pure-Vesna HTTP server: HTML pages / static assets / JSON APIs)
+- `vesna-email` — email (SMTP client with AUTH LOGIN; local mailbox server saving `.eml` files)
 
 ```bat
 vesna --pkg install vesna-test
+vesna --pkg install vesna-gui
+vesna --pkg install vesna-email
 ```
 
 ## Dynamic invocation inside packages

@@ -1,6 +1,6 @@
 # 包管理器 vpm
 
-Vesna 内置包管理器（`lib\pkg.ves`），命令入口 `vesna --pkg <命令>`。
+Vesna 内置包管理器（已嵌入 `vesna.exe`，单文件分发），命令入口 `vesna --pkg <命令>`。
 
 ## 命令总览
 
@@ -53,9 +53,13 @@ vesna --pkg publish
 - `strutil` — 字符串工具
 - `hello_vesna` — 示例包
 - `vesna-test` — 单元测试框架（`test_case` / `test_run` / `test_eq` / `test_assert` / `test_true` / `test_count`）
+- `vesna-gui` — Web GUI 框架（纯 Vesna HTTP 服务：HTML 页面 / 静态资源 / JSON API）
+- `vesna-email` — 邮件（SMTP 发送，AUTH LOGIN；本地邮箱服务器保存 `.eml`）
 
 ```bat
 vesna --pkg install vesna-test
+vesna --pkg install vesna-gui
+vesna --pkg install vesna-email
 ```
 
 ## 包内动态调用

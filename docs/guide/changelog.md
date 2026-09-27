@@ -2,6 +2,16 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.0.0
+
+### 新增
+- **调试器增强**：条件断点 `b <行号> if <条件>`；监视 `watch <表达式>` / `watches` / `unwatch <序号>`（每次停顿时显示）；改值 `set <变量> = <表达式>`；`finish` 运行到当前函数返回；`del all` 清空断点
+- **错误显示**：错误输出带源码行与 `^` 插入符定位列（`[第 N 行] 消息` + 源码行）
+- **性能**：字符串字面量编译期折叠（`"he" + "llo"` 不再生成中间节点）
+- **REPL**：上下方向键历史
+- **LSP 语义增强**：跳转定义覆盖赋值与 `def`；悬停显示用户标识符「定义于第 N 行」；重命名（跳过注释与字符串）；光标位于标识符首字符时也能正确取词；修复 definition 返回的 JSON 括号
+- VSCode 插件 2.0.0（193 内置高亮 + 完整 LSP 能力）
+
 ## 1.9.0
 
 ### 新增
@@ -67,14 +77,14 @@
 ### 修复
 - `--install` 现在支持在发布包的 `bin\` 目录内直接运行（安装程序会自动识别当前目录末尾的 `\bin` 并上溯到包根目录）。此前会报「找不到 bin\vesna.exe」。
 
-## 1.3.0## 1.3.0
+## 1.3.0
 
 ### 新增
 - **vpm 校验增强**（`lib/pkg.ves`）：元数据校验（`name` 须匹配 `^[a-z][a-z0-9_-]+$`、`version` 须为 `x.y.z`、`entry` 必须存在）、registry 条目可选 `sha256` 完整性校验、依赖自动安装（含版本检查与循环保护）、`remove` 依赖保护（`--force` 覆盖）。`init [名称]` 现在校验包名。
 - **LSP 0.4.0**（`vesna-vscode/server`）：解析器同步至冻结的 1.0.0 参考实现（覆盖 0.4 全部语法诊断）；补全覆盖全部 169 个内置（含 1.1/1.2 梯队）；悬停显示内置/关键字文档；`documentSymbol`（函数）；`foldingRange`（缩进块）；`#` 补全触发器。
 - **VSCode 插件 0.4.0**：`vesna-0.4.0.vsix`，serverInfo 0.4.0，更新描述。
 
-## 1.2.0## 1.2.0
+## 1.2.0
 
 ### 新增
 - **数据内置**：`#json_encode(v)` / `#json_decode(s)`（原生 JSON，dict 保持插入顺序）、`#re_groups(s; pattern)`（正则捕获组，未匹配组为 `none`）
@@ -83,7 +93,7 @@
 - **FFI**：`#ffi_call("dll"; "func"; arg...)` —— 从共享库调用 C 函数（Windows x64 用 LoadLibrary/GetProcAddress；Linux/macOS 用 dlopen/dlsym）；参数支持 int / 字符串（`char*`），最多 6 个，返回 64 位整数结果
 - 新增冒烟测试 `tests/tier3.ves`（+ `tier3_data.json`），golden 由 C++ 生成
 
-## 1.1.0## 1.1.0
+## 1.1.0
 
 ### 新增
 - **并发内置**：`#thread("fn"; arg...)`（在新线程中运行函数，全局变量按副本隔离，返回线程 id）、`#thread_join(id)`（等待并取回 `back` 值，线程出错则重新抛出）、`#thread_count()`、`#lock("name")` / `#unlock("name")`（命名互斥锁，用于共享资源保护）；`print` 输出已互斥，未 join 的线程在退出时自动等待
@@ -91,7 +101,7 @@
 - **二进制内置**：`#bin_read(path)` / `#bin_write(path; bytes)`（字节列表）、`#bin_hex(bytes)` / `#bin_unhex(s)`、`#bin_base64_encode(bytes)` / `#bin_base64_decode(s)` —— 字节即普通整数，可直接套用现有列表操作
 - 新增冒烟测试 `tests/concurrency.ves` / `tests/binary.ves`，golden 由 C++ 生成（冻结的 Python 参考实现不含 1.1 内置）
 
-## 1.0.0## 1.0.0
+## 1.0.0
 
 ### 新增
 - **包管理器（vpm）**：`vesna --pkg` — init / install（`目录` | `zip` | `owner:repo` | registry 包名）/ remove / list / search / registry；包位于 `<VESNA_HOME>\packages\<名称>\<名称>.ves`，通过 `import <名称>` 导入；`install <包名>` 从缓存的 registry 索引解析包；默认 registry 为 [Vesna 包花园](https://youakasakura-YAS.github.io/vesna-pkg/)

@@ -2,14 +2,13 @@
 
 ## Download
 
-Grab `vesna-1.5.0-windows-x64.zip` from [GitHub Releases](https://github.com/youakasakura-YAS/vesna/releases) and extract it anywhere — no dependencies needed.
+Grab `vesna-2.0.0-windows-x64.zip` from [GitHub Releases](https://github.com/youakasakura-YAS/vesna/releases) and extract it anywhere — no dependencies needed.
 
 | File | Description |
 | --- | --- |
-| `bin\vesna.exe` | Interpreter (statically linked, zero runtime deps) |
-| `lib\*.ves` | Standard library (vpm package manager, etc.) |
+| `vesna.exe` | Interpreter (statically linked, single-file distribution, zero runtime deps) |
 | `docs\` | Builtins & syntax docs |
-| `vesna-0.6.0.vsix` | VSCode extension (highlighting + LSP) |
+| `vesna-2.0.0.vsix` | VSCode extension (193-builtin highlighting + full LSP) |
 
 ## Run scripts
 

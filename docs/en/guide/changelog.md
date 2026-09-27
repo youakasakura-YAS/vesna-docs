@@ -2,6 +2,16 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.0.0
+
+### Added
+- **Debugger upgrades**: conditional breakpoints `b <line> if <condition>`; watches `watch <expr>` / `watches` / `unwatch <index>` (shown at every stop); value mutation `set <var> = <expr>`; `finish` runs to the current function return; `del all` clears breakpoints
+- **Error display**: errors show source context with a `^` caret at the offending column (`[line N] message` + source line)
+- **Performance**: compile-time folding of string literals (`"he" + "llo"` no longer builds an intermediate node)
+- **REPL**: up/down arrow command history
+- **LSP semantics**: go-to-definition covers assignments and `def`; hover shows "defined on line N" for user identifiers; rename (skips comments and string literals); word lookup works even when the caret sits on the first character of an identifier; fixed definition JSON brackets
+- VSCode extension 2.0.0 (193-builtin highlighting + full LSP)
+
 ## 1.9.0
 
 ### Added
@@ -67,14 +77,14 @@
 ### Fixed
 - `--install` now works when run from the `bin\` directory of a release package (the installer auto-detects a trailing `\bin` in the current directory and walks up to the package root). Previously it errored with "找不到 bin\vesna.exe".
 
-## 1.3.0## 1.3.0
+## 1.3.0
 
 ### Added
 - **vpm validation** (`lib/pkg.ves`): metadata checks (`name` `^[a-z][a-z0-9_-]+$`, `version` `x.y.z`, `entry` must exist), optional `sha256` integrity verification from registry entries, automatic dependency installation with version checks and loop protection, and `remove` dependency guard (`--force` overrides). `init [name]` now validates the package name.
 - **LSP 0.4.0** (`vesna-vscode/server`): parser synced to the frozen 1.0.0 reference (full 0.4 syntax diagnostics); completion covers all 169 builtins (1.1/1.2 tiers included); hover with builtin/keyword docs; `documentSymbol` (functions); `foldingRange` (indent blocks); `#` completion trigger.
 - **VSCode extension 0.4.0**: `vesna-0.4.0.vsix`, serverInfo 0.4.0, new description.
 
-## 1.2.0## 1.2.0
+## 1.2.0
 
 ### Added
 - **Data builtins**: `#json_encode(v)` / `#json_decode(s)` (native JSON, dicts keep insertion order), `#re_groups(s; pattern)` (regex capture groups, unmatched groups are `none`)
@@ -83,7 +93,7 @@
 - **FFI**: `#ffi_call("dll"; "func"; arg...)` — call C functions from shared libraries (Windows x64 LoadLibrary/GetProcAddress; Linux/macOS dlopen/dlsym); args: int / string (`char*`), up to 6 args, 64-bit integer result
 - New smoke test `tests/tier3.ves` (+ `tier3_data.json`) with C++-generated golden
 
-## 1.1.0## 1.1.0
+## 1.1.0
 
 ### Added
 - **Concurrency builtins**: `#thread("fn"; arg...)` (run a function in a new thread with an isolated copy of global variables; returns a thread id), `#thread_join(id)` (wait and collect the `back` value, rethrowing the thread's error), `#thread_count()`, `#lock("name")` / `#unlock("name")` (named mutexes for shared resources); `print` output is serialized and unjoined threads are joined at exit
@@ -91,7 +101,7 @@
 - **Binary builtins**: `#bin_read(path)` / `#bin_write(path; bytes)` (byte lists), `#bin_hex(bytes)` / `#bin_unhex(s)`, `#bin_base64_encode(bytes)` / `#bin_base64_decode(s)` — bytes are plain ints so existing list ops apply
 - New smoke tests `tests/concurrency.ves` / `tests/binary.ves` with C++-generated golden baselines (the frozen Python reference has no 1.1 builtins)
 
-## 1.0.0## 1.0.0
+## 1.0.0
 
 ### Added
 - **Package manager (vpm)**: `vesna --pkg` — init / install (`dir` | `zip` | `owner:repo` | registry package name) / remove / list / search / registry; packages live in `<VESNA_HOME>\packages\<name>\<name>.ves` and are imported via `import <name>`; `install <name>` resolves the package from the cached registry index; default registry is the [Vesna Package Garden](https://youakasakura-YAS.github.io/vesna-pkg/)
