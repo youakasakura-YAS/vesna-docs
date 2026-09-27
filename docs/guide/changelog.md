@@ -2,7 +2,21 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
-## 2.7.0
+## 2.8.0
+
+### 新增
+- **`vesna-mc` 1.1.0**：Minecraft 桥接模组支持事件 + 动作 + 定时任务，可直接用 Vesna 脚本编写大量服务端模组功能
+  - **事件系统扩至 11 个**：`server_started` / `server_stopped` / `player_join` / `player_leave` / `player_death` / `player_kill` / `block_break` / `block_place` / `player_chat` / `player_advancement` / `server_tick`（每秒）
+  - **定时任务**：`events.json` 的 `timers` 数组声明周期脚本（如每 30 秒广播）
+  - **动作系统**：脚本返回 `{"actions":[...]}`，模组执行 8 类动作 —— `message`（广播/私聊）、`command`（执行指令）、`give`（发物品）、`kick`（踢人）、`effect`（状态效果）、`tp`（传送）、`sound`（音效）、`log`（日志）；`{"message":"..."}` 快捷广播
+  - 新增 10 个示例脚本模板（死亡/击杀/破坏/放置/聊天回复/进度/计时器/节拍等）
+  - 生成器修复：`mc_copy_config` 现复制全部 11 个事件脚本 + 定时脚本（此前只复制 3 个）
+- VSCode 插件 2.8.0
+
+### 说明
+- 桥接类（`VesnaBridge` / `VesnaJson`）纯 Java，本机 javac 零错误验证；生成器与脚本协议端到端测试 11/11 通过。
+- 平台入口（Fabric / Forge / NeoForge）依赖各 loader API，需在对应开发环境编译。
+
 
 ### 新增
 - **`vesna-mc` 官方包（1.0.0）**：Minecraft 桥接模组生成器

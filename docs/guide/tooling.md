@@ -99,4 +99,4 @@ vesna --help
 
 ## VSCode 插件
 
-`vesna-2.7.0.vsix`：语法高亮（214 内置）+ LSP（诊断/补全/悬停/符号/折叠/跳转定义/重命名/签名提示/工作区符号/格式化/引用查找）。在 VSCode 扩展面板「从 VSIX 安装」即可；`vesna` 不在 PATH 时设置 `vesna.executablePath` 指向 `vesna.exe`。
+`vesna-2.8.0.vsix`：语法高亮（214 内置）+ LSP（诊断/补全/悬停/符号/折叠/跳转定义/重命名/签名提示/工作区符号/格式化/引用查找）。在 VSCode 扩展面板「从 VSIX 安装」即可；`vesna` 不在 PATH 时设置 `vesna.executablePath` 指向 `vesna.exe`。

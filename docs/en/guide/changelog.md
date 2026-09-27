@@ -2,7 +2,21 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
-## 2.7.0
+## 2.8.0
+
+### Added
+- **`vesna-mc` 1.1.0**: the Minecraft bridge mod now supports events + actions + timers, letting you write many server-side mod features directly in Vesna scripts
+  - **Event system expanded to 11**: `server_started` / `server_stopped` / `player_join` / `player_leave` / `player_death` / `player_kill` / `block_break` / `block_place` / `player_chat` / `player_advancement` / `server_tick` (every second)
+  - **Timers**: `events.json` `"timers"` array declares periodic scripts (e.g. broadcast every 30s)
+  - **Action system**: scripts return `{"actions":[...]}` and the mod executes 8 action types — `message` (broadcast/private), `command`, `give`, `kick`, `effect`, `tp`, `sound`, `log`; `{"message":"..."}` is a quick broadcast
+  - 10 new example script templates (death/kill/break/place/chat reply/advancement/timer/tick etc.)
+  - Generator fix: `mc_copy_config` now copies all 11 event scripts + timer scripts (previously only 3)
+- VSCode extension 2.8.0
+
+### Notes
+- Bridge classes (`VesnaBridge` / `VesnaJson`) are pure Java, verified with javac (zero errors); generator and script protocol pass end-to-end tests 11/11.
+- Platform entrypoints (Fabric / Forge / NeoForge) depend on each loader API and need to be compiled in the matching dev environment.
+
 
 ### Added
 - **`vesna-mc` official package (1.0.0)**: Minecraft bridge mod generator
