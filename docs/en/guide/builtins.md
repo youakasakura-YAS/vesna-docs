@@ -23,7 +23,7 @@ All builtins use the `#` prefix; arguments are separated by `;`.
 | `#trim(s)` | strip both sides |
 | `#lstrip(s)` | strip left |
 | `#rstrip(s)` | strip right |
-| `#sub(s; start; end)` | substring, 1-based index |
+| `#sub(s; start)` / `#sub(s; start; end)` | substring, 1-based index; omit end for tail |
 | `#split(s; sep)` | split by separator |
 | `#join(list; sep)` | join list |
 | `#find(s; sub)` | find position, 0 if absent |
@@ -40,6 +40,7 @@ All builtins use the `#` prefix; arguments are separated by `;`.
 
 ```text
 #sub("Hello"; '1'; '3'),        /* "He" */
+#sub("Hello"; '3'),          /* "llo" */
 #find("Hello"; "l"),            /* 3 */
 #replace("abc"; "b"; "X"),      /* "aXc" */
 #char_at("Hello"; '1'),         /* "H" */
@@ -97,7 +98,7 @@ The type argument of `#into` is a **keyword**, not a string:
 | `#pop(a)` | pop from the end |
 | `#sort(a)` | sort (returns a new list) |
 | `#reverse(a)` | reverse |
-| `#slice(a; start; end)` | slice |
+| `#slice(a; start)` / `#slice(a; start; end)` | slice; omit end for tail |
 | `#contains(a; x)` | contains? |
 
 ```text

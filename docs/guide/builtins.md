@@ -23,7 +23,7 @@
 | `#trim(s)` | 去两边空白 |
 | `#lstrip(s)` | 去左空白 |
 | `#rstrip(s)` | 去右空白 |
-| `#sub(s; start; end)` | 子串，索引从 1 开始 |
+| `#sub(s; start)` / `#sub(s; start; end)` | 子串，索引从 1 开始；省 end 截到结尾 |
 | `#split(s; sep)` | 按分隔符切分 |
 | `#join(list; sep)` | 拼接列表 |
 | `#find(s; sub)` | 查找位置，找不到返回 0 |
@@ -40,6 +40,7 @@
 
 ```text
 #sub("Hello"; '1'; '3'),        /* "He" */
+#sub("Hello"; '3'),          /* "llo" */
 #find("Hello"; "l"),            /* 3 */
 #replace("abc"; "b"; "X"),      /* "aXc" */
 #char_at("Hello"; '1'),         /* "H" */
@@ -97,7 +98,7 @@
 | `#pop(a)` | 弹出末尾 |
 | `#sort(a)` | 排序（返回新列表） |
 | `#reverse(a)` | 反转 |
-| `#slice(a; start; end)` | 切片 |
+| `#slice(a; start)` / `#slice(a; start; end)` | 切片；省 end 到结尾 |
 | `#contains(a; x)` | 是否包含 |
 
 ```text
