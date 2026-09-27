@@ -560,6 +560,23 @@ As with `#sha256`, pass a byte list (e.g. the result of `#bin_read(path)`) to ch
 
 Notes: key is derived via SHA-256 (same as `#aes_encrypt`); encrypted files carry a `VSENC1` magic prefix so wrong-key decrypts are detected. Operation is in place — back up before batch runs if needed.
 
+
+### File walk / hash / download / version / disk / random / URL / clipboard (2.6)
+
+| Function | Description |
+|---|---|
+| `#dir_walk(dir)` | Recursively list every file path under a directory (skips permission-denied dirs) |
+| `#hash_file(path; alg)` | Hash a file (`sha256`/`crc32`/`adler32`) as a hex string; for large-file checks and package integrity |
+| `#download(url; path)` | HTTP GET download to a local file, returns success; pair with `#hash_file` for verified downloads |
+| `#version()` | Vesna version string (same as `--version`) |
+| `#disk_free(path)` | Free bytes on the volume containing path (Windows `GetDiskFreeSpaceExW` / POSIX `statvfs`) |
+| `#rand_str(n)` | Random alphanumeric string of length n |
+| `#url_parse(url)` | Parse a URL into `{scheme; host; port; path; query}` (strips userinfo; default port https=443 / http=80) |
+| `#clip_get()` | Read clipboard text (POSIX returns `none`) |
+| `#clip_set(s)` | Set clipboard text, returns success (POSIX returns `false`) |
+
+These builtins provide generic capability for batch file processing, package download verification and script automation; `#dir_walk`/`#hash_file` are reused by `vesna-dev` and vpm.
+
 ## Full example
 
 ```text

@@ -2,6 +2,19 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.6.0
+
+### Added
+- **9 new builtins (205→214)**: `#dir_walk` (recursive file walk), `#hash_file` (file hash sha256/crc32/adler32), `#download` (HTTP download to file), `#version`, `#disk_free`, `#rand_str`, `#url_parse`, `#clip_get`/`#clip_set` (clipboard)
+- **New official packages**:
+  - `vesna-java`: Java interop (env check / run classes) + Gradle/Maven scaffolding + Minecraft mod skeletons (Fabric / Forge / NeoForge) and mcmod entries
+  - `vesna-android`: Android project scaffolding (Gradle / Manifest / Activity / resources) + build helper + signing info
+  - `vesna-dev`: general software development toolkit (scaffold, README/LICENSE/.gitignore templates, semver bump, changelog, TODO scan, line counting)
+- VSCode extension 2.6.0 (214 builtins highlighting)
+
+### Fixed
+- Duplicate heading in docs `builtins.md`
+
 ## 2.5.0
 
 ### Added

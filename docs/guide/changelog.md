@@ -2,6 +2,19 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.6.0
+
+### 新增
+- **9 个新内置（205→214）**：`#dir_walk`（递归文件遍历）、`#hash_file`（文件哈希 sha256/crc32/adler32）、`#download`（HTTP 下载到文件）、`#version`、`#disk_free`、`#rand_str`、`#url_parse`、`#clip_get` / `#clip_set`（剪贴板）
+- **新官方包**：
+  - `vesna-java`：Java 互操作（环境检测 / 运行类）+ Gradle/Maven 脚手架 + Minecraft 模组骨架（Fabric / Forge / NeoForge）与 mcmod 条目
+  - `vesna-android`：Android 项目骨架（Gradle / Manifest / Activity / 资源）+ 构建助手 + 签名说明
+  - `vesna-dev`：通用软件开发工具（项目脚手架、README/LICENSE/.gitignore 模板、semver 自增、changelog、TODO 扫描、行数统计）
+- VSCode 插件 2.6.0（214 内置高亮）
+
+### 修复
+- 文档 `builtins.md` 重复标题
+
 ## 2.5.0
 
 ### 新增

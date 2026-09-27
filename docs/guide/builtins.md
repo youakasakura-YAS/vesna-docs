@@ -551,8 +551,6 @@ def worker()-
 
 ### 文件 / 文件夹加解密（AES-256-CBC，原地操作）
 
-### 文件 / 文件夹加解密（AES-256-CBC，原地操作）
-
 | 函数 | 说明 |
 |---|---|
 | `#encrypt_file(path; key)` | 原地加密文件；内容替换为 base64 密文；返回 `true` |
@@ -561,6 +559,23 @@ def worker()-
 | `#decrypt_dir(dir; key)` | 递归还原 `#encrypt_dir` 加密的文件，返回还原文件数 |
 
 说明：密钥经 SHA-256 派生（与 `#aes_encrypt` 一致）；密文带 `VSENC1` 魔数前缀，错误密钥解密会被识别。操作为原地覆盖——批量执行前如需可先备份。
+
+
+### 文件遍历 / 哈希 / 下载 / 版本 / 磁盘 / 随机串 / URL / 剪贴板（2.6）
+
+| 函数 | 说明 |
+|---|---|
+| `#dir_walk(dir)` | 递归列出目录下全部文件路径（跳过权限拒绝的目录） |
+| `#hash_file(path; alg)` | 计算文件哈希（`sha256`/`crc32`/`adler32`），返回十六进制字符串；用于大文件校验与包完整性 |
+| `#download(url; path)` | HTTP GET 下载到本地文件，返回是否成功；配合 `#hash_file` 做下载校验 |
+| `#version()` | 返回 Vesna 版本字符串（与 `--version` 一致） |
+| `#disk_free(path)` | 返回路径所在磁盘剩余字节数（Windows `GetDiskFreeSpaceExW` / POSIX `statvfs`） |
+| `#rand_str(n)` | 生成 n 位随机字母数字字符串 |
+| `#url_parse(url)` | 解析 URL 为 `{scheme; host; port; path; query}`（剥离 userinfo，缺省端口 https=443 / http=80） |
+| `#clip_get()` | 读取剪贴板文本（POSIX 返回 `none`） |
+| `#clip_set(s)` | 设置剪贴板文本，返回是否成功（POSIX 返回 `false`） |
+
+这些内置为文件批处理、包下载校验、脚本自动化提供通用能力；`#dir_walk` / `#hash_file` 已被 `vesna-dev`、vpm 等工具复用。
 
 ## 完整例子
 
