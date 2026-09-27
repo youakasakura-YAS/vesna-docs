@@ -33,9 +33,10 @@ vesna --pkg publish              # one-command publish
 
 ## Validation & install
 
-- Metadata is validated item by item (since 1.3)
-- Registry entries may carry a `sha256` hash verified before install
-- Dependencies are installed automatically (version checks + loop protection)
+- Metadata is validated item by item (since 1.3; strong validation of name/url/version/checksum since 1.4)
+- Registry entries carry a `checksum` (zip sha256) verified before install (`sha256` field is still accepted; a warning is shown when no checksum value exists)
+- Dependencies are installed automatically (version checks + loop protection); `packages/` is created before install, and directory/zip installs verify the `entry` artifact exists afterwards
+- Semantic version constraints: exact `1.2.3`, `>=` `>` `<=` `<`, `^` (same major), `~` (same minor), `*` / empty (any)
 - `remove` refuses to uninstall a package others still depend on (`--force` overrides)
 
 ## Publish (since 1.5)
