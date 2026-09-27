@@ -255,7 +255,6 @@ print(#f"name=(name), age=(age)"),
 
 ---
 
-
 ---
 
 ## 0.4 General-purpose expansion
@@ -466,7 +465,6 @@ Note: the AES mode uses a fixed zero IV and a SHA-256-derived key — suitable f
 
 Examples: `#ffi_call("kernel32.dll"; "GetTickCount")`, `#ffi_call("kernel32.dll"; "GetModuleHandleA"; "kernel32.dll")`.
 
-
 ## 1.9 Networking / File encryption
 
 ### TCP sockets (native)
@@ -493,81 +491,29 @@ msg = #tcp_recv(cli; '4096'),
 
 Sockets are plain ints, so you can store them in lists/dicts and pass them between `#thread` workers.
 
-### File / folder encryption (AES-256-CBC, in place)
+
+### UDP sockets (native)
 
 | Function | Description |
 |---|---|
-| `#encrypt_file(path; key)` | encrypt a file in place; content is replaced by base64 ciphertext; returns `true` |
-| `#decrypt_file(path; key)` | restore a file encrypted by `#encrypt_file`; wrong key or non-Vesna data raises an error; returns `true` |
-| `#encrypt_dir(dir; key)` | recursively encrypt every file under a directory in place, return the number of files processed |
-| `#decrypt_dir(dir; key)` | recursively restore files encrypted by `#encrypt_dir`, return the number of files restored |
+| `#udp_open(port)` | create a UDP socket bound to a port, return the handle; pass `'0'` for a random port |
+| `#udp_send(handle; host; port; data)` | send a UDP datagram to `host:port`, return bytes sent |
+| `#udp_recv(handle; maxlen; timeout_ms)` | receive a datagram as a string; third arg is a timeout in ms (default: block), empty string on timeout |
+| `#udp_close(handle)` | close a UDP socket |
 
-Notes: key is derived via SHA-256 (same as `#aes_encrypt`); encrypted files carry a `VSENC1` magic prefix so wrong-key decrypts are detected. Operation is in place — back up before batch runs if needed.
-
-
-## 1.9 Networking / File encryption
-
-### TCP sockets (native)
+### DNS lookup
 
 | Function | Description |
 |---|---|
-| `#tcp_connect(host; port)` | connect to a TCP server, return the socket handle (int) |
-| `#tcp_listen(port)` | bind + listen on a port, return the listening socket handle (int) |
-| `#tcp_accept(srv)` | blocking accept on a listening socket, return the client socket handle (int) |
-| `#tcp_send(sock; data)` | send the whole string over the socket, return bytes sent (int) |
-| `#tcp_recv(sock; maxlen)` | receive up to `maxlen` bytes, return them as a string; empty string when the peer closed |
-| `#tcp_close(sock)` | close a socket |
+| `#dns_lookup(host)` | resolve a host name, return a list of IP address strings |
 
-Example (echo server):
+Like TCP, UDP handles are plain ints and can be passed across `#thread`. Example (loopback):
 
 ```
-srv = #tcp_listen('9000'),
-cli = #tcp_accept(srv),
-msg = #tcp_recv(cli; '4096'),
-#tcp_send(cli; "echo: " + msg),
-#tcp_close(cli),
-#tcp_close(srv),
+a = #udp_open('9001'),
+#udp_send(a; "127.0.0.1"; '9001'; "hello"),
+msg = #udp_recv(a; '100'; '1000'),
 ```
-
-Sockets are plain ints, so you can store them in lists/dicts and pass them between `#thread` workers.
-
-### File / folder encryption (AES-256-CBC, in place)
-
-| Function | Description |
-|---|---|
-| `#encrypt_file(path; key)` | encrypt a file in place; content is replaced by base64 ciphertext; returns `true` |
-| `#decrypt_file(path; key)` | restore a file encrypted by `#encrypt_file`; wrong key or non-Vesna data raises an error; returns `true` |
-| `#encrypt_dir(dir; key)` | recursively encrypt every file under a directory in place, return the number of files processed |
-| `#decrypt_dir(dir; key)` | recursively restore files encrypted by `#encrypt_dir`, return the number of files restored |
-
-Notes: key is derived via SHA-256 (same as `#aes_encrypt`); encrypted files carry a `VSENC1` magic prefix so wrong-key decrypts are detected. Operation is in place — back up before batch runs if needed.
-
-
-## 1.9 Networking / File encryption
-
-### TCP sockets (native)
-
-| Function | Description |
-|---|---|
-| `#tcp_connect(host; port)` | connect to a TCP server, return the socket handle (int) |
-| `#tcp_listen(port)` | bind + listen on a port, return the listening socket handle (int) |
-| `#tcp_accept(srv)` | blocking accept on a listening socket, return the client socket handle (int) |
-| `#tcp_send(sock; data)` | send the whole string over the socket, return bytes sent (int) |
-| `#tcp_recv(sock; maxlen)` | receive up to `maxlen` bytes, return them as a string; empty string when the peer closed |
-| `#tcp_close(sock)` | close a socket |
-
-Example (echo server):
-
-```
-srv = #tcp_listen('9000'),
-cli = #tcp_accept(srv),
-msg = #tcp_recv(cli; '4096'),
-#tcp_send(cli; "echo: " + msg),
-#tcp_close(cli),
-#tcp_close(srv),
-```
-
-Sockets are plain ints, so you can store them in lists/dicts and pass them between `#thread` workers.
 
 ### File / folder encryption (AES-256-CBC, in place)
 

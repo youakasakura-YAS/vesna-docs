@@ -493,6 +493,30 @@ msg = #tcp_recv(cli; '4096'),
 
 句柄就是普通整数，可存进列表/字典，也可跨 `#thread` 线程传递。
 
+
+### UDP 套接字（原生）
+
+| 函数 | 说明 |
+|---|---|
+| `#udp_open(port)` | 创建 UDP 套接字并绑定端口，返回句柄；`port` 传 `'0'` 使用随机端口 |
+| `#udp_send(handle; host; port; data)` | 向 `host:port` 发送 UDP 数据报，返回发送字节数 |
+| `#udp_recv(handle; maxlen; timeout_ms)` | 接收数据报并以字符串返回；第三参数为超时毫秒（缺省阻塞），超时返回空串 |
+| `#udp_close(handle)` | 关闭 UDP 套接字 |
+
+### DNS 查询
+
+| 函数 | 说明 |
+|---|---|
+| `#dns_lookup(host)` | 解析主机名，返回 IP 地址字符串列表 |
+
+UDP 与 TCP 一样使用整数句柄，可跨 `#thread` 传递。示例（本机回环）：
+
+```
+a = #udp_open('9001'),
+#udp_send(a; "127.0.0.1"; '9001'; "hello"),
+msg = #udp_recv(a; '100'; '1000'),
+```
+
 ### 文件 / 文件夹加解密（AES-256-CBC，原地操作）
 
 | 函数 | 说明 |
