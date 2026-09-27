@@ -2,6 +2,14 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.4.0
+
+### Added
+- **Concurrency builtins**: `#thread_id()` returns the current thread ID; counting semaphores `#sem_open(value)` / `#sem_wait(sem)` / `#sem_post(sem)` / `#sem_close(sem)` enable thread-to-thread synchronization across `#thread` (native Windows semaphores + POSIX sem_t)
+- **Checksum builtins**: `#crc32(data)` (IEEE 802.3) and `#adler32(data)` (RFC 1950), accepting a string or byte list (pair with `#bin_read` to checksum real file bytes)
+- **Builtins 198 → 205**
+- VSCode extension 2.4.0 (205 builtin highlighting)
+
 ## 2.0.0
 
 ### Added

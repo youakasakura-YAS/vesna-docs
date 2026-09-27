@@ -515,6 +515,40 @@ a = #udp_open('9001'),
 msg = #udp_recv(a; '100'; '1000'),
 ```
 
+### Concurrency: thread ID & semaphores (2.4)
+
+| Function | Description |
+|---|---|
+| `#thread_id()` | return the current thread ID (stable integer, cross-platform) |
+| `#sem_open(value)` | create a counting semaphore and return a handle; `value` is the initial count (default `'1'`) |
+| `#sem_wait(sem)` | blocking P operation: decrement the count, block while it is 0 |
+| `#sem_post(sem)` | non-blocking V operation: increment the count, wake a waiting thread |
+| `#sem_close(sem)` | destroy the semaphore |
+
+Semaphore handles are plain ints and can be passed across `#thread` for thread-to-thread synchronization (producer–consumer). Example:
+
+```text
+sem = #sem_open('0'),
+def worker()-
+-#sem_wait(sem),
+-print("worker released"),
+#thread(worker),
+#sleep('100'),
+#sem_post(sem),
+#sem_close(sem),
+```
+
+### Data checksums: CRC32 & Adler-32 (2.4)
+
+| Function | Description |
+|---|---|
+| `#crc32(data)` | compute the CRC32 (IEEE 802.3) checksum, return an 8-digit hex string; accepts a string or a byte list |
+| `#adler32(data)` | compute the Adler-32 (RFC 1950) checksum, return an 8-digit hex string; accepts a string or a byte list |
+
+As with `#sha256`, pass a byte list (e.g. the result of `#bin_read(path)`) to checksum real file bytes.
+
+### File / folder encryption (AES-256-CBC, in place)
+
 ### File / folder encryption (AES-256-CBC, in place)
 
 | Function | Description |

@@ -2,6 +2,14 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.4.0
+
+### 新增
+- **并发内建**：`#thread_id()` 返回当前线程 ID；计数信号量 `#sem_open(value)` / `#sem_wait(sem)` / `#sem_post(sem)` / `#sem_close(sem)`，可跨 `#thread` 做线程间同步（Windows 原生信号量 + POSIX sem_t）
+- **数据校验内建**：`#crc32(data)`（IEEE 802.3）与 `#adler32(data)`（RFC 1950），接受字符串或字节列表（配 `#bin_read` 可对真实文件字节做校验）
+- **内置函数 198 → 205**
+- VSCode 插件 2.4.0（205 内置高亮）
+
 ## 2.0.0
 
 ### 新增
