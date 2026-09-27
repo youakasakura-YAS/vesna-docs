@@ -26,10 +26,12 @@ vesna
 ## 安装到系统（可选）
 
 ```bat
-vesna --install            # 安装到 C:\Vesna，写入环境变量与文件关联
+vesna --install            # 安装（Windows 默认 C:\Vesna / POSIX 默认 /usr/local/vesna），写入环境变量与文件关联
 vesna --install D:\MyVesna # 指定目录
 vesna --uninstall          # 卸载：删目录 + 清环境变量 + 删注册表
 ```
+
+Windows 默认安装到 `C:\Vesna` 并注册 `.ves` 文件关联；Linux / macOS 默认安装到 `/usr/local/vesna`，环境变量写入 `~/.bashrc` / `~/.zshrc`。
 
 ## Hello, World
 

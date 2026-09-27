@@ -3,12 +3,28 @@
 ## Install & uninstall
 
 ```bat
-vesna --install            # install to C:\Vesna, writes env vars and file association
+vesna --install            # install (Windows default C:\Vesna / POSIX default /usr/local/vesna), writes env vars and file association
 vesna --install D:\MyVesna # custom directory
 vesna --uninstall          # uninstall: remove directory + env vars + registry
 ```
 
-The installer also registers the `.ves` file association (integrated `install-assoc.reg`). Single-file distribution — `vesna.exe` runs standalone without a `lib/` directory or `VESNA_HOME`.
+- **Windows**: installs to `C:\Vesna` by default, registers the `.ves` file association (integrated `install-assoc.reg`), writes the registry and user environment variables.
+- **Linux / macOS**: installs to `/usr/local/vesna` by default; environment variables (`VESNA_HOME`, `PATH`) are written to `~/.bashrc` / `~/.zshrc` (run `source` afterwards); register the file association with your system tool (e.g. `xdg-mime`).
+
+Single-file distribution — `vesna.exe` runs standalone without a `lib/` directory or `VESNA_HOME`.
+
+## Cross-platform build (from source)
+
+Besides official releases, you can build from source (needs a C++17 compiler):
+
+```bash
+# Linux / macOS / Windows (CMake)
+cmake -S src/cpp -B build
+cmake --build build
+sudo cmake --install build   # installs to /usr/local/bin (POSIX)
+```
+
+On Windows you can also build directly with `src/cpp/_build_msvc.bat` (MSVC).
 
 ## Debugger
 

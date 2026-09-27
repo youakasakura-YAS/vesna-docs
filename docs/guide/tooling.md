@@ -3,12 +3,28 @@
 ## 安装与卸载
 
 ```bat
-vesna --install            # 安装到 C:\Vesna，写入环境变量与文件关联
+vesna --install            # 安装（Windows 默认 C:\Vesna / POSIX 默认 /usr/local/vesna），写入环境变量与文件关联
 vesna --install D:\MyVesna # 指定目录
 vesna --uninstall          # 卸载：删目录 + 清环境变量 + 删注册表
 ```
 
-安装程序同时注册 `.ves` 文件关联（`install-assoc.reg` 集成其中）。单文件分发——`vesna.exe` 无需 `lib/` 目录、无需 `VESNA_HOME` 即可独立运行。
+- **Windows**：默认安装到 `C:\Vesna`，注册 `.ves` 文件关联（`install-assoc.reg` 集成其中）、写入注册表与用户环境变量。
+- **Linux / macOS**：默认安装到 `/usr/local/vesna`，环境变量（`VESNA_HOME`、`PATH`）写入 `~/.bashrc` / `~/.zshrc`（修改后需 `source` 生效），文件关联请用系统工具（如 `xdg-mime`）自行注册。
+
+单文件分发——`vesna.exe` 无需 `lib/` 目录、无需 `VESNA_HOME` 即可独立运行。
+
+## 跨平台构建（从源码）
+
+除官方发行版外，可从源码自行构建（需 C++17 编译器）：
+
+```bash
+# Linux / macOS / Windows（CMake）
+cmake -S src/cpp -B build
+cmake --build build
+sudo cmake --install build   # 安装到 /usr/local/bin（POSIX）
+```
+
+Windows 亦可直接用 `src/cpp/_build_msvc.bat`（MSVC）构建。
 
 ## 调试器
 

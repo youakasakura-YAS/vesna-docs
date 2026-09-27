@@ -26,10 +26,12 @@ vesna
 ## Install (optional)
 
 ```bat
-vesna --install            # install to C:\Vesna, set PATH & file association
+vesna --install            # install (Windows default C:\Vesna / POSIX default /usr/local/vesna), set PATH & file association
 vesna --install D:\MyVesna # custom directory
 vesna --uninstall          # remove dir + clean PATH + delete registry keys
 ```
+
+Windows installs to `C:\Vesna` and registers the `.ves` file association; Linux / macOS install to `/usr/local/vesna` and write env vars to `~/.bashrc` / `~/.zshrc`.
 
 ## Hello, World
 
