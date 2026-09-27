@@ -10,7 +10,7 @@
 - **Performance**: compile-time folding of string literals (`"he" + "llo"` no longer builds an intermediate node)
 - **REPL**: up/down arrow command history
 - **LSP semantics**: go-to-definition covers assignments and `def`; hover shows "defined on line N" for user identifiers; rename (skips comments and string literals); word lookup works even when the caret sits on the first character of an identifier; fixed definition JSON brackets
-- VSCode extension 2.0.0 (193-builtin highlighting + full LSP)
+- VSCode extension 2.3.0 (193-builtin highlighting + full LSP)
 
 ## 1.9.0
 

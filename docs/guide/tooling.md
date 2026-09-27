@@ -71,7 +71,7 @@ vesna --debug hello.ves
 vesna --lsp
 ```
 
-原生 C++ 实现（stdio JSON-RPC），支持：诊断、补全（全部 193 内置 + 文档标识符，`#` 触发）、悬停（内置/关键字文档 + 用户标识符定义行）、`documentSymbol`、`foldingRange`、跳转定义、重命名、签名提示、工作区符号。VSCode 插件自动拉起 `vesna --lsp`。
+原生 C++ 实现（stdio JSON-RPC），支持：诊断、补全（全部 198 内置 + 文档标识符，`#` 触发）、悬停（内置/关键字文档 + 用户标识符定义行）、`documentSymbol`、`foldingRange`、跳转定义、重命名、签名提示、工作区符号。VSCode 插件自动拉起 `vesna --lsp`。
 
 ## 格式化器（1.5 起）
 
@@ -99,4 +99,4 @@ vesna --help
 
 ## VSCode 插件
 
-`vesna-2.0.0.vsix`：语法高亮（193 内置）+ LSP（诊断/补全/悬停/符号/折叠/跳转定义/重命名/签名提示/工作区符号）。在 VSCode 扩展面板「从 VSIX 安装」即可；`vesna` 不在 PATH 时设置 `vesna.executablePath` 指向 `vesna.exe`。
+`vesna-2.3.0.vsix`：语法高亮（198 内置）+ LSP（诊断/补全/悬停/符号/折叠/跳转定义/重命名/签名提示/工作区符号）。在 VSCode 扩展面板「从 VSIX 安装」即可；`vesna` 不在 PATH 时设置 `vesna.executablePath` 指向 `vesna.exe`。
