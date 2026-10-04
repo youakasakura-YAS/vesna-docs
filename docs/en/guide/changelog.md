@@ -2,6 +2,17 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.9.1
+
+### Added
+- **`vesna-mc` 1.3.0**: events 11 → 16 (new `player_use_block` / `player_use_item` / `player_respawn` / `entity_damage` / `player_drop_item`), actions 8 → 14 (new `title` / `actionbar` / `set_block` / `summon` / `spawn_particle` / `scoreboard`)
+- **Performance**: top-level `"tick_interval"` in `events.json` tunes `server_tick` frequency (default 20 ticks); per-event `"min_interval"` (seconds) throttles high-frequency events (`server_tick`, `entity_damage` default 1s); resident scripts gain a shared top-level `state` dict readable/writable across event functions
+- No new language builtins (Vesna 2.9.0 unchanged)
+
+### Notes
+- 1.3.0 verified: generator assertions 7/7, protocol end-to-end 17/17 (5 new events + throttling + no_such_event), three-platform (Fabric/Forge/NeoForge) bridge javac syntax 0 errors, entrypoints only missing MC API symbols.
+
+## 2.9.0
 ## 2.9.0
 
 ### Added
