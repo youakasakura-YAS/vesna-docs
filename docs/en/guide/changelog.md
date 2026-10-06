@@ -2,6 +2,22 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.10.0
+
+### Added
+- **Arbitrary-precision big integers (BIG)**: integer literals beyond int64 stay exact (e.g. `'1254156454178189456478' * '2154418542154548741657'` prints the exact 44-digit product); int64 overflow auto-promotes to BIG; `+ - * ./ /- **` are all exact on integers (integer division truncates toward zero, modulo follows Python semantics); JSON parse/encode preserves big numbers; `#type` reports `big`, `#is_int` is true; `#sum` accumulates BIG elements exactly
+- **Math builtins (21 new; total builtins 215 → 236)**:
+  - Constants: `#pi()`, `#e()`
+  - Logarithm: `#log2(x)`
+  - Inverse trig: `#asin` / `#acos` / `#atan` / `#atan2(y;x)` (domain errors raise)
+  - Hyperbolic: `#sinh` / `#cosh` / `#tanh` / `#asinh` / `#acosh` / `#atanh` (domain errors raise)
+  - Exact combinatorics: `#fact(n)` / `#comb(n;k)` / `#perm(n;k)` / `#gcd(a;b)` / `#lcm(a;b)` (full-precision BIG)
+  - Calculus: `#integral("fn"; a; b; n)` Simpson numerical integration (n default 1000), `#deriv("fn"; x; h)` central-difference derivative (h default 1e-6), `#series("fn"; n)` integer summation Σ f(i) (exact BIG accumulation when the function always returns integers)
+- Calculus builtins call user functions dynamically via `#call` (e.g. `def sq(x)- -back(x*x),` then `#integral("sq";'0';'1';'1000')`)
+
+### Notes
+- Verified: BIG 12/12, math builtins 13/13, regression 4/4, LSP 10/10; the `'9223372036854775808'` boundary no longer crashes.
+
 ## 2.9.1
 
 ### Added
