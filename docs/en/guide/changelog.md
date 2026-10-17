@@ -2,6 +2,22 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.11.0
+
+### Performance (big-integer arithmetic acceleration)
+- **Three-tier big multiplication**: ≤64 digits textbook → base-10⁴ grouped naive (≤2048 digits) → Karatsuba (≤6144 digits) → **FFT (fast Fourier transform, base 10²)** for larger inputs; correctness cross-checked against Python ints on random 300,000-digit products (digit-exact)
+- **Long division rewritten as Knuth Algorithm D** (base 10⁴): normalized guess-multiply-subtract with correction, replacing digit-by-digit trial subtraction — benefits `./`, `/-`, `#gcd`, `#lcm`
+- **Big add/sub**: per-digit `insert(begin)` replaced with reversed construction, removing hidden O(n²)
+- Benchmark (new exe vs 2.10.0):
+  | digits | 2.10.0 | 2.11.0 | speedup |
+  |---|---|---|---|
+  | 1,000 | 0.088s | 0.019s | 4.7× |
+  | 10,000 | 0.454s | 0.032s | 14.1× |
+  | 100,000 | minutes | 0.102s | hundreds× |
+
+### Notes
+- Builtin count unchanged (236); no syntax changes; `#type` / `#is_int` / JSON big-int behavior unchanged.
+
 ## 2.10.0
 
 ### Added
