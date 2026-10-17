@@ -2,6 +2,15 @@
 
 [English](CHANGELOG.md) | [中文](CHANGELOG.zh-CN.md)
 
+## 2.11.1
+
+### Fixed
+- **Pow exponent limit raised**: integer exponent cap for `**` and `#pow` raised from 100,000 to 10,000,000 — exact big-int powers above 100k no longer fail with "无法计算" (e.g. `'9' ** '100001'` = 95,426 digits, `'9' ** '10000000'` = 9,542,426 digits); larger exponents (e.g. 100M) still report "无法计算" to prevent memory blowups
+- `#pow` now supports exact INT/BIG base and exponent powers (previously double-only)
+
+### Notes
+- Verified: BIG 12/12, math 13/13, regression 4/4, LSP 10/10; digit counts for `9**100001` / `9**500000` / `9**10000000` match mathematical expectation.
+
 ## 2.11.0
 
 ### Performance (big-integer arithmetic acceleration)
