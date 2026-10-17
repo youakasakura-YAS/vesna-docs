@@ -17,6 +17,7 @@
 
 ### Notes
 - Builtin count unchanged (236); no syntax changes; `#type` / `#is_int` / JSON big-int behavior unchanged.
+- Installer fixes: hot-swap now removes stale `.old` first; copy failures distinguish "permission denied (run as administrator)" from "exe in use"; `#copy` rewritten with streaming I/O and Windows error codes.
 
 ## 2.10.0
 
